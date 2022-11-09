@@ -6,7 +6,7 @@ Author: Nisha Mohan Devadiga
 """
 import argparse
 import sys
-# from stable_baselines3.common.policies import MlpPolicy
+from stable_baselines3.common.policies import MlpPolicy
 from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3 import PPO, A2C, DDPG , SAC
 # from stable_baselines3.common.env_util import make_vec_env
