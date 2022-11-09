@@ -1,0 +1,48 @@
+diff --git a/main.py b/main.py
+index 255d85e..d556825 100644
+--- a/main.py
++++ b/main.py
+@@ -6,7 +6,7 @@ Author: Nisha Mohan Devadiga
+ """
+ import argparse
+ import sys
+-from stable_baselines3.common.policies import MlpPolicy
++# from stable_baselines3.common.policies import MlpPolicy
+ from stable_baselines3.common.vec_env import DummyVecEnv
+ from stable_baselines3 import PPO, A2C, DDPG , SAC
+ # from stable_baselines3.common.env_util import make_vec_env
+@@ -19,7 +19,6 @@ from wandb.integration.sb3 import WandbCallback
+ from env.stock_trading_env import StockTradingEnv
+ 
+ 
+-
+ TOTAL_TIMESTEPS = 200000
+ 
+ 
+diff --git a/wandb/debug-internal.log b/wandb/debug-internal.log
+index 149ec84..f27df25 120000
+--- a/wandb/debug-internal.log
++++ b/wandb/debug-internal.log
+@@ -1 +1 @@
+-run-20221108_230643-tfyjywbw/logs/debug-internal.log
+\ No newline at end of file
++run-20221109_003442-3usyhe3k/logs/debug-internal.log
+\ No newline at end of file
+diff --git a/wandb/debug.log b/wandb/debug.log
+index 3b210a6..b190991 120000
+--- a/wandb/debug.log
++++ b/wandb/debug.log
+@@ -1 +1 @@
+-run-20221108_230643-tfyjywbw/logs/debug.log
+\ No newline at end of file
++run-20221109_003442-3usyhe3k/logs/debug.log
+\ No newline at end of file
+diff --git a/wandb/latest-run b/wandb/latest-run
+index 088ba2e..cb60642 120000
+--- a/wandb/latest-run
++++ b/wandb/latest-run
+@@ -1 +1 @@
+-run-20221108_230643-tfyjywbw
+\ No newline at end of file
++run-20221109_003442-3usyhe3k
+\ No newline at end of file
