@@ -1,5 +1,8 @@
 """
 Final Project: Stock Trading -Reinforcement Learning
+Author: Nisha Mohan Devadiga
+        Akanksha Rawat
+        Karishma Kuria
 """
 import argparse
 import sys
