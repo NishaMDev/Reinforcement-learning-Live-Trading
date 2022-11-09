@@ -1,0 +1,153 @@
+/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/gym/spaces/box.py:73: UserWarning: [33mWARN: Box bound precision lowered by casting to float16
+  logger.warn(
+Using cpu device
+/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/stable_baselines3/common/evaluation.py:65: UserWarning: Evaluation environment is not wrapped with a ``Monitor`` wrapper. This may result in reporting modified episode lengths and rewards, if other wrappers happen to modify these. Consider wrapping environment first with ``Monitor`` wrapper.
+  warnings.warn(
+Eval num_timesteps=1000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+----------------------------------
+| eval/              |           |
+|    mean_ep_length  | 5.35e+03  |
+|    mean_reward     | 2.15e+07  |
+| time/              |           |
+|    total_timesteps | 1000      |
+| train/             |           |
+|    actor_loss      | -2.14e+03 |
+|    critic_loss     | 6.78e+04  |
+|    ent_coef        | 1.27      |
+|    ent_coef_loss   | -1.98     |
+|    learning_rate   | 0.0003    |
+|    n_updates       | 899       |
+----------------------------------
+New best mean reward!
+/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/stable_baselines3/common/evaluation.py:65: UserWarning: Evaluation environment is not wrapped with a ``Monitor`` wrapper. This may result in reporting modified episode lengths and rewards, if other wrappers happen to modify these. Consider wrapping environment first with ``Monitor`` wrapper.
+  warnings.warn(
+Eval num_timesteps=2000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 2000     |
+| train/             |          |
+|    actor_loss      | -5.2e+03 |
+|    critic_loss     | 1.56e+05 |
+|    ent_coef        | 1.76     |
+|    ent_coef_loss   | -4.34    |
+|    learning_rate   | 0.0003   |
+|    n_updates       | 1899     |
+---------------------------------
+Eval num_timesteps=3000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+----------------------------------
+| eval/              |           |
+|    mean_ep_length  | 5.35e+03  |
+|    mean_reward     | 2.15e+07  |
+| time/              |           |
+|    total_timesteps | 3000      |
+| train/             |           |
+|    actor_loss      | -8.25e+03 |
+|    critic_loss     | 1.61e+05  |
+|    ent_coef        | 2.42      |
+|    ent_coef_loss   | -7.76     |
+|    learning_rate   | 0.0003    |
+|    n_updates       | 2899      |
+----------------------------------
+Eval num_timesteps=4000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+----------------------------------
+| eval/              |           |
+|    mean_ep_length  | 5.35e+03  |
+|    mean_reward     | 2.15e+07  |
+| time/              |           |
+|    total_timesteps | 4000      |
+| train/             |           |
+|    actor_loss      | -1.13e+04 |
+|    critic_loss     | 1.73e+05  |
+|    ent_coef        | 3.29      |
+|    ent_coef_loss   | -9.69     |
+|    learning_rate   | 0.0003    |
+|    n_updates       | 3899      |
+----------------------------------
+Eval num_timesteps=5000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 5000     |
+| train/             |          |
+|    actor_loss      | -1.4e+04 |
+|    critic_loss     | 1.82e+05 |
+|    ent_coef        | 4.46     |
+|    ent_coef_loss   | -12.5    |
+|    learning_rate   | 0.0003   |
+|    n_updates       | 4899     |
+---------------------------------
+Eval num_timesteps=6000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+----------------------------------
+| eval/              |           |
+|    mean_ep_length  | 5.35e+03  |
+|    mean_reward     | 2.15e+07  |
+| time/              |           |
+|    total_timesteps | 6000      |
+| train/             |           |
+|    actor_loss      | -1.67e+04 |
+|    critic_loss     | 1.78e+05  |
+|    ent_coef        | 6.01      |
+|    ent_coef_loss   | -15.7     |
+|    learning_rate   | 0.0003    |
+|    n_updates       | 5899      |
+----------------------------------
+Eval num_timesteps=7000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+----------------------------------
+| eval/              |           |
+|    mean_ep_length  | 5.35e+03  |
+|    mean_reward     | 2.15e+07  |
+| time/              |           |
+|    total_timesteps | 7000      |
+| train/             |           |
+|    actor_loss      | -1.91e+04 |
+|    critic_loss     | 1.54e+05  |
+|    ent_coef        | 8.08      |
+|    ent_coef_loss   | -16.7     |
+|    learning_rate   | 0.0003    |
+|    n_updates       | 6899      |
+----------------------------------
+Eval num_timesteps=8000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+----------------------------------
+| eval/              |           |
+|    mean_ep_length  | 5.35e+03  |
+|    mean_reward     | 2.15e+07  |
+| time/              |           |
+|    total_timesteps | 8000      |
+| train/             |           |
+|    actor_loss      | -2.14e+04 |
+|    critic_loss     | 1.51e+05  |
+|    ent_coef        | 10.8      |
+|    ent_coef_loss   | -18.4     |
+|    learning_rate   | 0.0003    |
+|    n_updates       | 7899      |
+----------------------------------
+Eval num_timesteps=9000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+----------------------------------
+| eval/              |           |
+|    mean_ep_length  | 5.35e+03  |
+|    mean_reward     | 2.15e+07  |
+| time/              |           |
+|    total_timesteps | 9000      |
+| train/             |           |
+|    actor_loss      | -2.32e+04 |
+|    critic_loss     | 1.87e+05  |
+|    ent_coef        | 14.5      |
+|    ent_coef_loss   | -20.1     |
+|    learning_rate   | 0.0003    |
+|    n_updates       | 8899      |
+----------------------------------
+Stopping training because there was no new best model in the last 4 evaluations

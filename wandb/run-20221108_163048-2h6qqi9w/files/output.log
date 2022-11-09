@@ -1,0 +1,14 @@
+
+Using cpu device
+/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/gym/spaces/box.py:73: UserWarning: [33mWARN: Box bound precision lowered by casting to float16
+  logger.warn(
+Traceback (most recent call last):
+  File "/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/main.py", line 60, in <module>
+    model  = DQN("MlpPolicy", env, verbose=1)
+  File "/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/stable_baselines3/dqn/dqn.py", line 103, in __init__
+    super().__init__(
+  File "/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/stable_baselines3/common/off_policy_algorithm.py", line 111, in __init__
+    super().__init__(
+  File "/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/stable_baselines3/common/base_class.py", line 187, in __init__
+    assert isinstance(self.action_space, supported_action_spaces), (
+AssertionError: The algorithm only supports (<class 'gym.spaces.discrete.Discrete'>,) as action spaces but Box([0. 0.], [3. 1.], (2,), float16) was provided

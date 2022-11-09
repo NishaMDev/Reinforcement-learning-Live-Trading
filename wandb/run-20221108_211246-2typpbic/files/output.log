@@ -1,0 +1,177 @@
+
+Using cpu device
+/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/gym/spaces/box.py:73: UserWarning: [33mWARN: Box bound precision lowered by casting to float16
+  logger.warn(
+/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/env/StockTradingEnv.py:97: RuntimeWarning: invalid value encountered in double_scalars
+  self.cost_basis = (
+/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/stable_baselines3/common/evaluation.py:65: UserWarning: Evaluation environment is not wrapped with a ``Monitor`` wrapper. This may result in reporting modified episode lengths and rewards, if other wrappers happen to modify these. Consider wrapping environment first with ``Monitor`` wrapper.
+  warnings.warn(
+Eval num_timesteps=1000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 1000     |
+---------------------------------
+New best mean reward!
+/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/env/StockTradingEnv.py:97: RuntimeWarning: invalid value encountered in double_scalars
+  self.cost_basis = (
+/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/stable_baselines3/common/evaluation.py:65: UserWarning: Evaluation environment is not wrapped with a ``Monitor`` wrapper. This may result in reporting modified episode lengths and rewards, if other wrappers happen to modify these. Consider wrapping environment first with ``Monitor`` wrapper.
+  warnings.warn(
+Eval num_timesteps=2000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 2000     |
+---------------------------------
+-----------------------------
+| time/              |      |
+|    fps             | 130  |
+|    iterations      | 1    |
+|    time_elapsed    | 15   |
+|    total_timesteps | 2048 |
+-----------------------------
+Eval num_timesteps=3000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+------------------------------------------
+| eval/                   |              |
+|    mean_ep_length       | 5.35e+03     |
+|    mean_reward          | 2.15e+07     |
+| time/                   |              |
+|    total_timesteps      | 3000         |
+| train/                  |              |
+|    approx_kl            | 5.768903e-05 |
+|    clip_fraction        | 0            |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -2.83        |
+|    explained_variance   | 0            |
+|    learning_rate        | 0.0003       |
+|    loss                 | 5.46e+07     |
+|    n_updates            | 10           |
+|    policy_gradient_loss | -0.000537    |
+|    std                  | 0.997        |
+|    value_loss           | 9.52e+07     |
+------------------------------------------
+Eval num_timesteps=4000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 4000     |
+---------------------------------
+-----------------------------
+| time/              |      |
+|    fps             | 128  |
+|    iterations      | 2    |
+|    time_elapsed    | 31   |
+|    total_timesteps | 4096 |
+-----------------------------
+Eval num_timesteps=5000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+-------------------------------------------
+| eval/                   |               |
+|    mean_ep_length       | 5.35e+03      |
+|    mean_reward          | 2.15e+07      |
+| time/                   |               |
+|    total_timesteps      | 5000          |
+| train/                  |               |
+|    approx_kl            | 1.8408813e-05 |
+|    clip_fraction        | 0             |
+|    clip_range           | 0.2           |
+|    entropy_loss         | -2.83         |
+|    explained_variance   | -9.78e-06     |
+|    learning_rate        | 0.0003        |
+|    loss                 | 5.59e+07      |
+|    n_updates            | 20            |
+|    policy_gradient_loss | -0.00016      |
+|    std                  | 0.996         |
+|    value_loss           | 9.68e+07      |
+-------------------------------------------
+Eval num_timesteps=6000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 6000     |
+---------------------------------
+-----------------------------
+| time/              |      |
+|    fps             | 128  |
+|    iterations      | 3    |
+|    time_elapsed    | 47   |
+|    total_timesteps | 6144 |
+-----------------------------
+Eval num_timesteps=7000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+-------------------------------------------
+| eval/                   |               |
+|    mean_ep_length       | 5.35e+03      |
+|    mean_reward          | 2.15e+07      |
+| time/                   |               |
+|    total_timesteps      | 7000          |
+| train/                  |               |
+|    approx_kl            | 6.9942616e-06 |
+|    clip_fraction        | 0             |
+|    clip_range           | 0.2           |
+|    entropy_loss         | -2.83         |
+|    explained_variance   | -4.05e-06     |
+|    learning_rate        | 0.0003        |
+|    loss                 | 5.31e+07      |
+|    n_updates            | 30            |
+|    policy_gradient_loss | -8.21e-05     |
+|    std                  | 0.998         |
+|    value_loss           | 9.78e+07      |
+-------------------------------------------
+Eval num_timesteps=8000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 8000     |
+---------------------------------
+-----------------------------
+| time/              |      |
+|    fps             | 127  |
+|    iterations      | 4    |
+|    time_elapsed    | 64   |
+|    total_timesteps | 8192 |
+-----------------------------
+Traceback (most recent call last):
+  File "/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/main.py", line 88, in <module>
+    wandb.watch(model)
+  File "/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/wandb/sdk/wandb_watch.py", line 71, in watch
+    raise ValueError(
+ValueError: Expected a pytorch model (torch.nn.Module). Received <class 'stable_baselines3.ppo.ppo.PPO'>
+Eval num_timesteps=9000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+-------------------------------------------
+| eval/                   |               |
+|    mean_ep_length       | 5.35e+03      |
+|    mean_reward          | 2.15e+07      |
+| time/                   |               |
+|    total_timesteps      | 9000          |
+| train/                  |               |
+|    approx_kl            | 4.4754997e-06 |
+|    clip_fraction        | 0             |
+|    clip_range           | 0.2           |
+|    entropy_loss         | -2.83         |
+|    explained_variance   | -1.79e-06     |
+|    learning_rate        | 0.0003        |
+|    loss                 | 4.36e+07      |
+|    n_updates            | 40            |
+|    policy_gradient_loss | -5.71e-05     |
+|    std                  | 0.998         |
+|    value_loss           | 9.66e+07      |
+-------------------------------------------
+Stopping training because there was no new best model in the last 4 evaluations

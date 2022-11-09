@@ -1,0 +1,25 @@
+2022-11-08 16:12:34,262 INFO    MainThread:83146 [wandb_setup.py:_flush():68] Configure stats pid to 83146
+2022-11-08 16:12:34,262 INFO    MainThread:83146 [wandb_setup.py:_flush():68] Loading settings from /Users/nishadevadiga/.config/wandb/settings
+2022-11-08 16:12:34,262 INFO    MainThread:83146 [wandb_setup.py:_flush():68] Loading settings from /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/settings
+2022-11-08 16:12:34,262 INFO    MainThread:83146 [wandb_setup.py:_flush():68] Loading settings from environment variables: {'_require_service': 'True'}
+2022-11-08 16:12:34,262 INFO    MainThread:83146 [wandb_setup.py:_flush():68] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program': '/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/main.py'}
+2022-11-08 16:12:34,263 INFO    MainThread:83146 [wandb_init.py:_log_setup():476] Logging user logs to /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_161234-2hpi0z2u/logs/debug.log
+2022-11-08 16:12:34,263 INFO    MainThread:83146 [wandb_init.py:_log_setup():477] Logging internal logs to /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_161234-2hpi0z2u/logs/debug-internal.log
+2022-11-08 16:12:34,263 INFO    MainThread:83146 [wandb_init.py:init():516] calling init triggers
+2022-11-08 16:12:34,263 INFO    MainThread:83146 [wandb_init.py:init():519] wandb.init called with sweep_config: {}
+config: {'policy_type': 'MlpPolicy', 'total_timesteps': 25000, 'env_name': 'StockTradingEnv'}
+2022-11-08 16:12:34,263 INFO    MainThread:83146 [wandb_init.py:init():569] starting backend
+2022-11-08 16:12:34,263 INFO    MainThread:83146 [wandb_init.py:init():573] setting up manager
+2022-11-08 16:12:34,265 INFO    MainThread:83146 [backend.py:_multiprocessing_setup():102] multiprocessing start_methods=spawn,fork,forkserver, using: spawn
+2022-11-08 16:12:34,268 INFO    MainThread:83146 [wandb_init.py:init():580] backend started and connected
+2022-11-08 16:12:34,270 INFO    MainThread:83146 [wandb_init.py:init():658] updated telemetry
+2022-11-08 16:12:34,283 INFO    MainThread:83146 [wandb_init.py:init():693] communicating run to backend with 60 second timeout
+2022-11-08 16:12:34,579 INFO    MainThread:83146 [wandb_run.py:_on_init():2000] communicating current version
+2022-11-08 16:12:34,685 INFO    MainThread:83146 [wandb_run.py:_on_init():2004] got version response 
+2022-11-08 16:12:34,685 INFO    MainThread:83146 [wandb_init.py:init():728] starting run threads in backend
+2022-11-08 16:12:36,578 INFO    MainThread:83146 [wandb_run.py:_console_start():1980] atexit reg
+2022-11-08 16:12:36,579 INFO    MainThread:83146 [wandb_run.py:_redirect():1838] redirect: SettingsConsole.WRAP_RAW
+2022-11-08 16:12:36,579 INFO    MainThread:83146 [wandb_run.py:_redirect():1903] Wrapping output streams.
+2022-11-08 16:12:36,579 INFO    MainThread:83146 [wandb_run.py:_redirect():1925] Redirects installed.
+2022-11-08 16:12:36,580 INFO    MainThread:83146 [wandb_init.py:init():765] run started, returning control to user process
+2022-11-08 16:12:43,864 WARNING MsgRouterThr:83146 [router.py:message_loop():77] message_loop has been closed

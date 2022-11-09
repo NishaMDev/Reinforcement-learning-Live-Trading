@@ -1,0 +1,118 @@
+diff --git a/logs/results/evaluations.npz b/logs/results/evaluations.npz
+index 333557c..e19d68a 100644
+Binary files a/logs/results/evaluations.npz and b/logs/results/evaluations.npz differ
+diff --git a/main.py b/main.py
+index f35e59d..1da41a1 100644
+--- a/main.py
++++ b/main.py
+@@ -5,6 +5,7 @@ import datetime as dt
+ from stable_baselines3.common.vec_env import DummyVecEnv
+ from stable_baselines3 import PPO, A2C, DDPG , SAC
+ from stable_baselines3.common.env_util import make_vec_env
++from stable_baselines3.common.monitor import Monitor
+ import matplotlib.dates as mpdates
+ from stable_baselines3.common.callbacks import CallbackList, CheckpointCallback, EvalCallback , StopTrainingOnNoModelImprovement
+ import wandb
+@@ -22,7 +23,7 @@ if __name__ == '__main__':
+     parser.add_argument('-i', '--input', type=str,
+                         help='Path to input image or video file. Skip this argument to pick default file.')
+     parser.add_argument('-a', "--algorithm", type=str, required=True,
+-                        default="PPO", help="mention algorithm needs to be performed - PPO / A2C / DDPG")
++                        default="PPO", help="mention algorithm needs to be performed - PPO / A2C / DDPG / SAC")
+     args = parser.parse_args()
+     algo = args.algorithm
+    
+@@ -30,6 +31,8 @@ if __name__ == '__main__':
+     config = {
+          "policy_type": "MlpPolicy",
+          "total_timesteps": TOTAL_TIMESTEPS,
++         "learning_rate": 0.01,
++         "momentum" : 0.2,   
+           "env_name": "StockTradingEnv",
+         }
+     
+@@ -38,9 +41,12 @@ if __name__ == '__main__':
+           project="StockTrading",
+           config=config,
+           sync_tensorboard=True,  # auto-upload sb3's tensorboard metrics
+-        # monitor_gym=True,  # auto-upload the videos of agents playing the game
+-         # save_code=True,  # optional
++          monitor_gym=True,  # auto-upload the videos of agents playing the game
++          save_code=True,  # optional
+         )
++    
++    # artifact = wandb.Artifact(name='Stocks', type='dataset')
++    # artifact.add_file(local_path='path/file.format')
+         
+     # Load data 
+     df = pd.read_csv('./data/MSFT.csv')
+@@ -48,16 +54,17 @@ if __name__ == '__main__':
+ 
+     # The algorithms require a vectorized environment to run
+     env = DummyVecEnv([lambda: StockTradingEnv(df)])
++    env = Monitor(env) 
+ 
+     # Instantiate the agent
+     if algo == "PPO":
+-        model = PPO("MlpPolicy", env, verbose=1)
++        model = PPO("MlpPolicy", env, tensorboard_log=f"runs", verbose=1)
+     elif algo == "A2C":
+-        model = A2C("MlpPolicy", env, verbose=1)
++        model = A2C("MlpPolicy", env, tensorboard_log=f"runs", verbose=1)
+     elif algo == "DDPG":
+-        model = DDPG("MlpPolicy", env, verbose=1)    
++        model = DDPG("MlpPolicy", env, tensorboard_log=f"runs", verbose=1)    
+     elif algo == "SAC":
+-        model  = SAC("MlpPolicy", env, verbose=1)
++        model  = SAC("MlpPolicy", env, tensorboard_log=f"runs", verbose=1)
+     else:
+         print("Program Terminated. Please enter valid algorithm - PPO / A2C / DDPG / SAC")
+         exit()
+@@ -72,7 +79,8 @@ if __name__ == '__main__':
+ 
+     wandb_callback = WandbCallback(
+             model_save_path=f"models/{algo}/{run.id}",
+-            verbose=2,
++            gradient_save_freq=1000,
++            verbose=1,
+         )
+ 
+     # Create the callback list
+@@ -80,7 +88,6 @@ if __name__ == '__main__':
+ 
+     # Train the agent
+     model.learn(total_timesteps=TOTAL_TIMESTEPS,callback=callback)
+-  
+ 
+ # model.save("ppo_stock_trading")
+ # del model # remove to demonstrate saving and loading
+diff --git a/model_checkpoints/best_model/PPO/best_model.zip b/model_checkpoints/best_model/PPO/best_model.zip
+index e2b7c04..801ae93 100644
+Binary files a/model_checkpoints/best_model/PPO/best_model.zip and b/model_checkpoints/best_model/PPO/best_model.zip differ
+diff --git a/wandb/debug-internal.log b/wandb/debug-internal.log
+index 90ff074..44fe6a2 120000
+--- a/wandb/debug-internal.log
++++ b/wandb/debug-internal.log
+@@ -1 +1 @@
+-run-20221108_172835-w52z9vut/logs/debug-internal.log
+\ No newline at end of file
++run-20221108_212150-28ufz4h5/logs/debug-internal.log
+\ No newline at end of file
+diff --git a/wandb/debug.log b/wandb/debug.log
+index 480e812..c828ae7 120000
+--- a/wandb/debug.log
++++ b/wandb/debug.log
+@@ -1 +1 @@
+-run-20221108_172835-w52z9vut/logs/debug.log
+\ No newline at end of file
++run-20221108_212150-28ufz4h5/logs/debug.log
+\ No newline at end of file
+diff --git a/wandb/latest-run b/wandb/latest-run
+index 77387c2..6cfa6f3 120000
+--- a/wandb/latest-run
++++ b/wandb/latest-run
+@@ -1 +1 @@
+-run-20221108_172835-w52z9vut
+\ No newline at end of file
++run-20221108_212150-28ufz4h5
+\ No newline at end of file
