@@ -1,0 +1,195 @@
+2022-11-08 16:22:44,914 INFO    StreamThr :84776 [internal.py:wandb_internal():88] W&B internal server running at pid: 84776, started at: 2022-11-08 16:22:44.913370
+2022-11-08 16:22:44,915 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: status
+2022-11-08 16:22:44,917 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: status
+2022-11-08 16:22:44,917 DEBUG   SenderThread:84776 [sender.py:send():303] send: header
+2022-11-08 16:22:44,917 INFO    WriterThread:84776 [datastore.py:open_for_write():75] open: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/run-3vi4f1b8.wandb
+2022-11-08 16:22:44,922 DEBUG   SenderThread:84776 [sender.py:send():303] send: run
+2022-11-08 16:22:45,206 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: check_version
+2022-11-08 16:22:45,210 INFO    SenderThread:84776 [dir_watcher.py:__init__():216] watching files in: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files
+2022-11-08 16:22:45,210 INFO    SenderThread:84776 [sender.py:_start_run_threads():928] run started: 3vi4f1b8 with start time 1667953364.907023
+2022-11-08 16:22:45,210 DEBUG   SenderThread:84776 [sender.py:send():303] send: summary
+2022-11-08 16:22:45,211 INFO    SenderThread:84776 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2022-11-08 16:22:45,211 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: check_version
+2022-11-08 16:22:45,327 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: run_start
+2022-11-08 16:22:45,333 DEBUG   HandlerThread:84776 [system_info.py:__init__():31] System info init
+2022-11-08 16:22:45,333 DEBUG   HandlerThread:84776 [system_info.py:__init__():46] System info init done
+2022-11-08 16:22:45,333 INFO    HandlerThread:84776 [system_monitor.py:start():150] Starting system monitor
+2022-11-08 16:22:45,333 INFO    SystemMonitor:84776 [system_monitor.py:_start():116] Starting system asset monitoring threads
+2022-11-08 16:22:45,334 INFO    HandlerThread:84776 [system_monitor.py:probe():168] Collecting system info
+2022-11-08 16:22:45,334 INFO    SystemMonitor:84776 [interfaces.py:start():168] Started cpu
+2022-11-08 16:22:45,334 DEBUG   HandlerThread:84776 [system_info.py:probe():195] Probing system
+2022-11-08 16:22:45,334 INFO    SystemMonitor:84776 [interfaces.py:start():168] Started disk
+2022-11-08 16:22:45,334 INFO    SystemMonitor:84776 [interfaces.py:start():168] Started gpuapple
+2022-11-08 16:22:45,336 INFO    SystemMonitor:84776 [interfaces.py:start():168] Started memory
+2022-11-08 16:22:45,337 INFO    SystemMonitor:84776 [interfaces.py:start():168] Started network
+2022-11-08 16:22:45,342 DEBUG   HandlerThread:84776 [system_info.py:_probe_git():180] Probing git
+2022-11-08 16:22:45,357 DEBUG   HandlerThread:84776 [system_info.py:_probe_git():188] Probing git done
+2022-11-08 16:22:45,357 DEBUG   HandlerThread:84776 [system_info.py:probe():241] Probing system done
+2022-11-08 16:22:45,357 DEBUG   HandlerThread:84776 [system_monitor.py:probe():177] {'os': 'macOS-13.0-arm64-arm-64bit', 'python': '3.10.6', 'heartbeatAt': '2022-11-09T00:22:45.334710', 'startedAt': '2022-11-09T00:22:44.894898', 'docker': None, 'cuda': None, 'args': ('-a', 'DDPG'), 'state': 'running', 'program': '/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/main.py', 'codePath': 'main.py', 'git': {'remote': 'https://github.com/NishaMDev/Reinforcement-learning-Live-Trading.git', 'commit': 'da8c768dec1fec2349ca429262cc1d6256778f9a'}, 'email': 'nishamohan.devadiga@sjsu.edu', 'root': '/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master', 'host': 'Nishas-MacBook-Pro.local', 'username': 'nishadevadiga', 'executable': '/Users/nishadevadiga/miniforge3/envs/venv/bin/python', 'cpu_count': 10, 'cpu_count_logical': 10, 'disk': {'total': 460.4317207336426, 'used': 8.218391418457031}, 'gpuapple': {'type': 'arm', 'vendor': 'Apple'}, 'memory': {'total': 16.0}}
+2022-11-08 16:22:45,357 INFO    HandlerThread:84776 [system_monitor.py:probe():178] Finished collecting system info
+2022-11-08 16:22:45,357 INFO    HandlerThread:84776 [system_monitor.py:probe():181] Publishing system info
+2022-11-08 16:22:45,357 DEBUG   HandlerThread:84776 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2022-11-08 16:22:45,357 DEBUG   HandlerThread:84776 [system_info.py:_save_pip():67] Saving pip packages done
+2022-11-08 16:22:45,357 DEBUG   HandlerThread:84776 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2022-11-08 16:22:46,214 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/wandb-summary.json
+2022-11-08 16:22:46,215 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/conda-environment.yaml
+2022-11-08 16:22:46,215 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/requirements.txt
+2022-11-08 16:22:47,196 DEBUG   HandlerThread:84776 [system_info.py:_save_conda():86] Saving conda packages done
+2022-11-08 16:22:47,197 INFO    HandlerThread:84776 [system_monitor.py:probe():183] Finished publishing system info
+2022-11-08 16:22:47,212 DEBUG   SenderThread:84776 [sender.py:send():303] send: files
+2022-11-08 16:22:47,213 INFO    SenderThread:84776 [sender.py:_save_file():1171] saving file wandb-metadata.json with policy now
+2022-11-08 16:22:47,216 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: stop_status
+2022-11-08 16:22:47,216 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: stop_status
+2022-11-08 16:22:47,219 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/conda-environment.yaml
+2022-11-08 16:22:47,219 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/wandb-metadata.json
+2022-11-08 16:22:47,346 DEBUG   SenderThread:84776 [sender.py:send():303] send: telemetry
+2022-11-08 16:22:47,347 DEBUG   SenderThread:84776 [sender.py:send():303] send: telemetry
+2022-11-08 16:22:47,347 DEBUG   SenderThread:84776 [sender.py:send():303] send: config
+2022-11-08 16:22:47,749 INFO    Thread-16 :84776 [upload_job.py:push():143] Uploaded file /var/folders/6g/h_s9xlfj307_2dfgnbpb5cbm0000gn/T/tmp8j_tge06wandb/19h3whdb-wandb-metadata.json
+2022-11-08 16:22:48,224 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:22:50,235 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:22:56,265 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:22:58,276 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:23:02,353 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: stop_status
+2022-11-08 16:23:02,353 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: stop_status
+2022-11-08 16:23:04,306 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:23:12,335 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:23:16,352 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/config.yaml
+2022-11-08 16:23:17,477 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: stop_status
+2022-11-08 16:23:17,477 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: stop_status
+2022-11-08 16:23:20,370 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:23:28,397 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:23:32,602 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: stop_status
+2022-11-08 16:23:32,602 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: stop_status
+2022-11-08 16:23:34,424 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:23:42,458 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:23:45,340 DEBUG   SystemMonitor:84776 [system_monitor.py:_start():130] Starting system metrics aggregation loop
+2022-11-08 16:23:45,340 DEBUG   SenderThread:84776 [sender.py:send():303] send: telemetry
+2022-11-08 16:23:45,341 DEBUG   SenderThread:84776 [sender.py:send():303] send: stats
+2022-11-08 16:23:47,475 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/config.yaml
+2022-11-08 16:23:47,726 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: stop_status
+2022-11-08 16:23:47,726 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: stop_status
+2022-11-08 16:23:49,485 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:23:55,960 DEBUG   SenderThread:84776 [sender.py:send():303] send: telemetry
+2022-11-08 16:23:55,960 DEBUG   SenderThread:84776 [sender.py:send():303] send: files
+2022-11-08 16:23:55,960 INFO    SenderThread:84776 [sender.py:_save_file():1171] saving file model.zip with policy live
+2022-11-08 16:23:56,519 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_created():275] file/dir created: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/model.zip
+2022-11-08 16:23:57,521 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:23:57,654 DEBUG   SenderThread:84776 [sender.py:send():303] send: telemetry
+2022-11-08 16:23:57,655 DEBUG   SenderThread:84776 [sender.py:send():303] send: exit
+2022-11-08 16:23:57,655 INFO    SenderThread:84776 [sender.py:send_exit():442] handling exit code: 0
+2022-11-08 16:23:57,655 INFO    SenderThread:84776 [sender.py:send_exit():444] handling runtime: 72
+2022-11-08 16:23:57,655 INFO    SenderThread:84776 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2022-11-08 16:23:57,655 INFO    SenderThread:84776 [sender.py:send_exit():450] send defer
+2022-11-08 16:23:57,655 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:23:57,655 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 0
+2022-11-08 16:23:57,655 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:23:57,655 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 0
+2022-11-08 16:23:57,655 INFO    SenderThread:84776 [sender.py:transition_state():463] send defer: 1
+2022-11-08 16:23:57,656 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:23:57,656 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 1
+2022-11-08 16:23:57,656 INFO    HandlerThread:84776 [system_monitor.py:finish():160] Stopping system monitor
+2022-11-08 16:23:57,677 DEBUG   SystemMonitor:84776 [system_monitor.py:_start():137] Finished system metrics aggregation loop
+2022-11-08 16:23:57,678 DEBUG   SystemMonitor:84776 [system_monitor.py:_start():141] Publishing last batch of metrics
+2022-11-08 16:23:57,678 INFO    HandlerThread:84776 [interfaces.py:finish():173] Joined cpu
+2022-11-08 16:23:57,678 INFO    HandlerThread:84776 [interfaces.py:finish():173] Joined disk
+2022-11-08 16:23:57,679 INFO    HandlerThread:84776 [interfaces.py:finish():173] Joined gpuapple
+2022-11-08 16:23:57,679 INFO    HandlerThread:84776 [interfaces.py:finish():173] Joined memory
+2022-11-08 16:23:57,679 INFO    HandlerThread:84776 [interfaces.py:finish():173] Joined network
+2022-11-08 16:23:57,679 INFO    Thread-17 :84776 [upload_job.py:push():143] Uploaded file /var/folders/6g/h_s9xlfj307_2dfgnbpb5cbm0000gn/T/tmp8j_tge06wandb/3no9s9w2-model.zip
+2022-11-08 16:23:57,679 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:23:57,679 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 1
+2022-11-08 16:23:57,679 INFO    SenderThread:84776 [sender.py:transition_state():463] send defer: 2
+2022-11-08 16:23:57,680 DEBUG   SenderThread:84776 [sender.py:send():303] send: stats
+2022-11-08 16:23:57,680 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:23:57,680 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 2
+2022-11-08 16:23:57,680 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:23:57,680 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 2
+2022-11-08 16:23:57,680 INFO    SenderThread:84776 [sender.py:transition_state():463] send defer: 3
+2022-11-08 16:23:57,680 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:23:57,680 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 3
+2022-11-08 16:23:57,680 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:23:57,680 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 3
+2022-11-08 16:23:57,680 INFO    SenderThread:84776 [sender.py:transition_state():463] send defer: 4
+2022-11-08 16:23:57,680 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:23:57,680 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 4
+2022-11-08 16:23:57,680 DEBUG   SenderThread:84776 [sender.py:send():303] send: summary
+2022-11-08 16:23:57,680 INFO    SenderThread:84776 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2022-11-08 16:23:57,681 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:23:57,681 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 4
+2022-11-08 16:23:57,681 INFO    SenderThread:84776 [sender.py:transition_state():463] send defer: 5
+2022-11-08 16:23:57,681 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:23:57,681 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 5
+2022-11-08 16:23:57,681 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:23:57,681 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 5
+2022-11-08 16:23:57,839 INFO    SenderThread:84776 [sender.py:transition_state():463] send defer: 6
+2022-11-08 16:23:57,839 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:23:57,839 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 6
+2022-11-08 16:23:57,840 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:23:57,840 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 6
+2022-11-08 16:23:58,522 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/wandb-summary.json
+2022-11-08 16:23:58,523 INFO    Thread-13 :84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/config.yaml
+2022-11-08 16:23:58,660 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: poll_exit
+2022-11-08 16:23:59,936 INFO    SenderThread:84776 [sender.py:transition_state():463] send defer: 7
+2022-11-08 16:23:59,936 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: poll_exit
+2022-11-08 16:23:59,937 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:23:59,937 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 7
+2022-11-08 16:23:59,937 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:23:59,937 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 7
+2022-11-08 16:23:59,937 INFO    SenderThread:84776 [dir_watcher.py:finish():362] shutting down directory watcher
+2022-11-08 16:24:00,532 INFO    SenderThread:84776 [dir_watcher.py:_on_file_modified():292] file/dir modified: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:24:00,532 INFO    SenderThread:84776 [dir_watcher.py:finish():392] scan: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files
+2022-11-08 16:24:00,532 INFO    SenderThread:84776 [dir_watcher.py:finish():406] scan save: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/requirements.txt requirements.txt
+2022-11-08 16:24:00,532 INFO    SenderThread:84776 [dir_watcher.py:finish():406] scan save: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log output.log
+2022-11-08 16:24:00,534 INFO    SenderThread:84776 [dir_watcher.py:finish():406] scan save: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/config.yaml config.yaml
+2022-11-08 16:24:00,535 INFO    SenderThread:84776 [dir_watcher.py:finish():406] scan save: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/wandb-summary.json wandb-summary.json
+2022-11-08 16:24:00,536 INFO    SenderThread:84776 [dir_watcher.py:finish():406] scan save: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/model.zip model.zip
+2022-11-08 16:24:00,538 INFO    SenderThread:84776 [dir_watcher.py:finish():406] scan save: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/conda-environment.yaml conda-environment.yaml
+2022-11-08 16:24:00,539 INFO    SenderThread:84776 [dir_watcher.py:finish():406] scan save: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/wandb-metadata.json wandb-metadata.json
+2022-11-08 16:24:00,539 INFO    SenderThread:84776 [sender.py:transition_state():463] send defer: 8
+2022-11-08 16:24:00,541 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:24:00,541 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 8
+2022-11-08 16:24:00,541 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:24:00,541 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 8
+2022-11-08 16:24:00,541 INFO    SenderThread:84776 [file_pusher.py:finish():168] shutting down file pusher
+2022-11-08 16:24:01,037 INFO    Thread-21 :84776 [upload_job.py:push():143] Uploaded file /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/wandb-summary.json
+2022-11-08 16:24:01,038 INFO    Thread-19 :84776 [upload_job.py:push():143] Uploaded file /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/output.log
+2022-11-08 16:24:01,047 INFO    Thread-22 :84776 [upload_job.py:push():143] Uploaded file /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/conda-environment.yaml
+2022-11-08 16:24:01,062 INFO    Thread-20 :84776 [upload_job.py:push():143] Uploaded file /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/config.yaml
+2022-11-08 16:24:01,225 INFO    Thread-18 :84776 [upload_job.py:push():143] Uploaded file /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/files/requirements.txt
+2022-11-08 16:24:01,430 INFO    Thread-12 (_thread_body):84776 [sender.py:transition_state():463] send defer: 9
+2022-11-08 16:24:01,431 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:24:01,431 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 9
+2022-11-08 16:24:01,431 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:24:01,431 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 9
+2022-11-08 16:24:01,431 INFO    SenderThread:84776 [file_pusher.py:join():173] waiting for file pusher
+2022-11-08 16:24:01,431 INFO    SenderThread:84776 [sender.py:transition_state():463] send defer: 10
+2022-11-08 16:24:01,431 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:24:01,431 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 10
+2022-11-08 16:24:01,432 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:24:01,432 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 10
+2022-11-08 16:24:01,705 INFO    SenderThread:84776 [sender.py:transition_state():463] send defer: 11
+2022-11-08 16:24:01,706 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:24:01,706 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 11
+2022-11-08 16:24:01,706 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:24:01,706 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 11
+2022-11-08 16:24:01,706 INFO    SenderThread:84776 [sender.py:transition_state():463] send defer: 12
+2022-11-08 16:24:01,707 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: defer
+2022-11-08 16:24:01,707 INFO    HandlerThread:84776 [handler.py:handle_request_defer():162] handle defer: 12
+2022-11-08 16:24:01,707 DEBUG   SenderThread:84776 [sender.py:send():303] send: final
+2022-11-08 16:24:01,707 DEBUG   SenderThread:84776 [sender.py:send():303] send: footer
+2022-11-08 16:24:01,707 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: defer
+2022-11-08 16:24:01,707 INFO    SenderThread:84776 [sender.py:send_request_defer():459] handle sender defer: 12
+2022-11-08 16:24:01,709 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: poll_exit
+2022-11-08 16:24:01,710 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: server_info
+2022-11-08 16:24:01,710 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: poll_exit
+2022-11-08 16:24:01,710 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: get_summary
+2022-11-08 16:24:01,711 DEBUG   SenderThread:84776 [sender.py:send_request():317] send_request: server_info
+2022-11-08 16:24:01,711 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: sampled_history
+2022-11-08 16:24:02,130 DEBUG   HandlerThread:84776 [handler.py:handle_request():139] handle_request: shutdown
+2022-11-08 16:24:02,130 INFO    HandlerThread:84776 [handler.py:finish():814] shutting down handler
+2022-11-08 16:24:02,708 INFO    WriterThread:84776 [datastore.py:close():279] close: /Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/wandb/run-20221108_162244-3vi4f1b8/run-3vi4f1b8.wandb
+2022-11-08 16:24:03,133 INFO    SenderThread:84776 [sender.py:finish():1331] shutting down sender
+2022-11-08 16:24:03,133 INFO    SenderThread:84776 [file_pusher.py:finish():168] shutting down file pusher
+2022-11-08 16:24:03,133 INFO    SenderThread:84776 [file_pusher.py:join():173] waiting for file pusher
+2022-11-08 16:24:04,133 INFO    MainThread:84776 [internal.py:handle_exit():78] Internal process exited
