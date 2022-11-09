@@ -1,25 +1,25 @@
+"""
+name - stock_trading_Env.py
+"""
+
 import random
-import json
 import gym
 from gym import spaces
-import pandas as pd
 import numpy as np
 
-from render.StockTradingGraph import StockTradingGraph
+from render.stock_trading_graph import StockTradingGraph
 
 MAX_ACCOUNT_BALANCE = 2147483647
 MAX_NUM_SHARES = 2147483647
 MAX_SHARE_PRICE = 5000
 MAX_OPEN_POSITIONS = 5
 MAX_STEPS = 20000
-
 INITIAL_ACCOUNT_BALANCE = 10000
-
 LOOKBACK_WINDOW_SIZE = 40
 
 
-def factor_pairs(val):
-    return [(i, val / i) for i in range(1, int(val**0.5)+1) if val % i == 0]
+# def factor_pairs(val):
+#     return [(i, val / i) for i in range(1, int(val**0.5)+1) if val % i == 0]
 
 
 class StockTradingEnv(gym.Env):
@@ -27,10 +27,21 @@ class StockTradingEnv(gym.Env):
     metadata = {'render.modes': ['live', 'file', 'none']}
     visualization = None
 
-    def __init__(self, df):
+    def __init__(self, stock_data):
         super(StockTradingEnv, self).__init__()
 
-        self.df = self._adjust_prices(df)
+        self.stock_data = self._adjust_prices(stock_data)
+                # Reset the state of the environment to an initial state
+        self.balance = INITIAL_ACCOUNT_BALANCE
+        self.net_worth = INITIAL_ACCOUNT_BALANCE
+        self.max_net_worth = INITIAL_ACCOUNT_BALANCE
+        self.shares_held = 0
+        self.cost_basis = 0
+        self.total_shares_sold = 0
+        self.total_sales_value = 0
+        self.current_step = 0
+        self.trades = []
+
         self.reward_range = (0, MAX_ACCOUNT_BALANCE)
 
         # Actions of the format Buy x%, Sell x%, Hold, etc.
@@ -41,30 +52,30 @@ class StockTradingEnv(gym.Env):
         self.observation_space = spaces.Box(
             low=0, high=1, shape=(5, LOOKBACK_WINDOW_SIZE + 2), dtype=np.float16)
 
-    def _adjust_prices(self, df):
-        adjust_ratio = df['Adjusted_Close'] / df['Close']
+    def _adjust_prices(self, stock_data):
+        adjust_ratio = stock_data['Adjusted_Close'] / stock_data['Close']
 
-        df['Open'] = df['Open'] * adjust_ratio
-        df['High'] = df['High'] * adjust_ratio
-        df['Low'] = df['Low'] * adjust_ratio
-        df['Close'] = df['Close'] * adjust_ratio
+        stock_data['Open'] = stock_data['Open'] * adjust_ratio
+        stock_data['High'] = stock_data['High'] * adjust_ratio
+        stock_data['Low'] = stock_data['Low'] * adjust_ratio
+        stock_data['Close'] = stock_data['Close'] * adjust_ratio
 
-        return df
+        return stock_data
 
     def _next_observation(self):
         frame = np.zeros((5, LOOKBACK_WINDOW_SIZE + 1))
 
         # Get the stock data points for the last 5 days and scale to between 0-1
         np.put(frame, [0, 4], [
-            self.df.loc[self.current_step: self.current_step +
+            self.stock_data.loc[self.current_step: self.current_step +
                         LOOKBACK_WINDOW_SIZE, 'Open'].values / MAX_SHARE_PRICE,
-            self.df.loc[self.current_step: self.current_step +
+            self.stock_data.loc[self.current_step: self.current_step +
                         LOOKBACK_WINDOW_SIZE, 'High'].values / MAX_SHARE_PRICE,
-            self.df.loc[self.current_step: self.current_step +
+            self.stock_data.loc[self.current_step: self.current_step +
                         LOOKBACK_WINDOW_SIZE, 'Low'].values / MAX_SHARE_PRICE,
-            self.df.loc[self.current_step: self.current_step +
+            self.stock_data.loc[self.current_step: self.current_step +
                         LOOKBACK_WINDOW_SIZE, 'Close'].values / MAX_SHARE_PRICE,
-            self.df.loc[self.current_step: self.current_step +
+            self.stock_data.loc[self.current_step: self.current_step +
                         LOOKBACK_WINDOW_SIZE, 'Volume'].values / MAX_NUM_SHARES,
         ])
 
@@ -81,7 +92,8 @@ class StockTradingEnv(gym.Env):
 
     def _take_action(self, action):
         current_price = random.uniform(
-            self.df.loc[self.current_step, "Open"], self.df.loc[self.current_step, "Close"])
+            self.stock_data.loc[self.current_step, "Open"],
+            self.stock_data.loc[self.current_step, "Close"])
 
         action_type = action[0]
         amount = action[1]
@@ -134,7 +146,7 @@ class StockTradingEnv(gym.Env):
 
         reward = self.balance * delay_modifier + self.current_step
         done = self.net_worth <= 0 or self.current_step >= len(
-            self.df.loc[:, 'Open'].values)
+            self.stock_data.loc[:, 'Open'].values)
 
         obs = self._next_observation()
 
@@ -157,18 +169,14 @@ class StockTradingEnv(gym.Env):
     def _render_to_file(self, filename='render.txt'):
         profit = self.net_worth - INITIAL_ACCOUNT_BALANCE
 
-        file = open(filename, 'a+')
-
+        file = open(filename, 'a')
         file.write(f'Step: {self.current_step}\n')
         file.write(f'Balance: {self.balance}\n')
-        file.write(
-            f'Shares held: {self.shares_held} (Total sold: {self.total_shares_sold})\n')
-        file.write(
-            f'Avg cost for held shares: {self.cost_basis} (Total sales value: {self.total_sales_value})\n')
-        file.write(
-            f'Net worth: {self.net_worth} (Max net worth: {self.max_net_worth})\n')
+        file.write(f'Shares held: {self.shares_held} (Total sold: {self.total_shares_sold})\n')
+        file.write(f'Avg cost for held shares: {self.cost_basis} \
+            (Total sales value: {self.total_sales_value})\n')
+        file.write(f'Net worth: {self.net_worth} (Max net worth: {self.max_net_worth})\n')
         file.write(f'Profit: {profit}\n\n')
-
         file.close()
 
     def render(self, mode='live', **kwargs):
@@ -177,15 +185,18 @@ class StockTradingEnv(gym.Env):
             self._render_to_file(kwargs.get('filename', 'render.txt'))
 
         elif mode == 'live':
-            if self.visualization == None:
+            if self.visualization is None:
                 self.visualization = StockTradingGraph(
-                    self.df, kwargs.get('title', None))
+                    self.stock_data, kwargs.get('title', None))
 
             if self.current_step > LOOKBACK_WINDOW_SIZE:
                 self.visualization.render(
-                    self.current_step, self.net_worth, self.trades, window_size=LOOKBACK_WINDOW_SIZE)
+                    self.current_step,
+                    self.net_worth,
+                    self.trades,
+                    window_size=LOOKBACK_WINDOW_SIZE)
 
     def close(self):
-        if self.visualization != None:
+        if self.visualization is not None:
             self.visualization.close()
             self.visualization = None

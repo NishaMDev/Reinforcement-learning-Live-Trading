@@ -1,0 +1,245 @@
+diff --git a/logs/results/evaluations.npz b/logs/results/evaluations.npz
+index 333557c..e19d68a 100644
+Binary files a/logs/results/evaluations.npz and b/logs/results/evaluations.npz differ
+diff --git a/main.py b/main.py
+index f35e59d..d7d9072 100644
+--- a/main.py
++++ b/main.py
+@@ -22,7 +22,7 @@ if __name__ == '__main__':
+     parser.add_argument('-i', '--input', type=str,
+                         help='Path to input image or video file. Skip this argument to pick default file.')
+     parser.add_argument('-a', "--algorithm", type=str, required=True,
+-                        default="PPO", help="mention algorithm needs to be performed - PPO / A2C / DDPG")
++                        default="PPO", help="mention algorithm needs to be performed - PPO / A2C / DDPG / SAC")
+     args = parser.parse_args()
+     algo = args.algorithm
+    
+@@ -30,6 +30,8 @@ if __name__ == '__main__':
+     config = {
+          "policy_type": "MlpPolicy",
+          "total_timesteps": TOTAL_TIMESTEPS,
++         "learning_rate": 0.01,
++         "momentum" : 0.2,   
+           "env_name": "StockTradingEnv",
+         }
+     
+@@ -38,9 +40,12 @@ if __name__ == '__main__':
+           project="StockTrading",
+           config=config,
+           sync_tensorboard=True,  # auto-upload sb3's tensorboard metrics
+-        # monitor_gym=True,  # auto-upload the videos of agents playing the game
+-         # save_code=True,  # optional
++          monitor_gym=True,  # auto-upload the videos of agents playing the game
++          save_code=True,  # optional
+         )
++    
++    # artifact = wandb.Artifact(name='Stocks', type='dataset')
++    # artifact.add_file(local_path='path/file.format')
+         
+     # Load data 
+     df = pd.read_csv('./data/MSFT.csv')
+@@ -51,18 +56,18 @@ if __name__ == '__main__':
+ 
+     # Instantiate the agent
+     if algo == "PPO":
+-        model = PPO("MlpPolicy", env, verbose=1)
++        model = PPO("MlpPolicy", env, tensorboard_log=f"runs", verbose=1)
+     elif algo == "A2C":
+-        model = A2C("MlpPolicy", env, verbose=1)
++        model = A2C("MlpPolicy", env, tensorboard_log=f"runs", verbose=1)
+     elif algo == "DDPG":
+-        model = DDPG("MlpPolicy", env, verbose=1)    
++        model = DDPG("MlpPolicy", env, tensorboard_log=f"runs", verbose=1)    
+     elif algo == "SAC":
+-        model  = SAC("MlpPolicy", env, verbose=1)
++        model  = SAC("MlpPolicy", env, tensorboard_log=f"runs", verbose=1)
+     else:
+         print("Program Terminated. Please enter valid algorithm - PPO / A2C / DDPG / SAC")
+         exit()
+                       
+-    checkpoint_callback = CheckpointCallback(save_freq=1e4, save_path='./model_checkpoints/{}/'.format(algo))
++    checkpoint_callback = CheckpointCallback(save_freq=1e4, save_path='./model_checkpoints/')
+     
+     # Stop training if there is no improvement after more than 3 evaluations
+     stop_train_callback = StopTrainingOnNoModelImprovement(max_no_improvement_evals=3, min_evals=5, verbose=1)
+@@ -72,7 +77,8 @@ if __name__ == '__main__':
+ 
+     wandb_callback = WandbCallback(
+             model_save_path=f"models/{algo}/{run.id}",
+-            verbose=2,
++                    # gradient_save_freq=1000
++            verbose=1,
+         )
+ 
+     # Create the callback list
+@@ -80,7 +86,6 @@ if __name__ == '__main__':
+ 
+     # Train the agent
+     model.learn(total_timesteps=TOTAL_TIMESTEPS,callback=callback)
+-  
+ 
+ # model.save("ppo_stock_trading")
+ # del model # remove to demonstrate saving and loading
+@@ -92,7 +97,7 @@ if __name__ == '__main__':
+         action, _states = model.predict(obs)
+         obs, rewards, done, info = env.step(action)
+         # env.render(title='MSFT')
+-        env.render(mode='live')
++        env.render(mode='file')
+         
+     run.finish()   
+ 
+diff --git a/model_checkpoints/best_model/PPO/best_model.zip b/model_checkpoints/best_model/PPO/best_model.zip
+index e2b7c04..661eec6 100644
+Binary files a/model_checkpoints/best_model/PPO/best_model.zip and b/model_checkpoints/best_model/PPO/best_model.zip differ
+diff --git a/wandb/debug-cli.nishadevadiga.log b/wandb/debug-cli.nishadevadiga.log
+index e69de29..84ba236 100644
+--- a/wandb/debug-cli.nishadevadiga.log
++++ b/wandb/debug-cli.nishadevadiga.log
+@@ -0,0 +1,119 @@
++2022-11-08 21:21:54 INFO No path found after runs/PPO_1/events.out.tfevents.1667971313.Nishas-MacBook-Pro.local.99221.0
++2022-11-08 21:21:54 INFO No path found after runs/PPO_1/events.out.tfevents.1667971313.Nishas-MacBook-Pro.local.99221.0
++2022-11-08 21:21:54 INFO No path found after runs/PPO_1/events.out.tfevents.1667971313.Nishas-MacBook-Pro.local.99221.0
++2022-11-08 21:21:55 INFO No path found after runs/PPO_1/events.out.tfevents.1667971313.Nishas-MacBook-Pro.local.99221.0
++2022-11-08 21:21:56 INFO No path found after runs/PPO_1/events.out.tfevents.1667971313.Nishas-MacBook-Pro.local.99221.0
++2022-11-08 21:21:57 INFO No path found after runs/PPO_1/events.out.tfevents.1667971313.Nishas-MacBook-Pro.local.99221.0
++2022-11-08 21:21:58 INFO No path found after runs/PPO_1/events.out.tfevents.1667971313.Nishas-MacBook-Pro.local.99221.0
++2022-11-08 21:21:59 INFO No path found after runs/PPO_1/events.out.tfevents.1667971313.Nishas-MacBook-Pro.local.99221.0
++2022-11-08 21:22:00 INFO No path found after runs/PPO_1/events.out.tfevents.1667971313.Nishas-MacBook-Pro.local.99221.0
++2022-11-08 21:23:59 INFO No path found after runs/PPO_2/events.out.tfevents.1667971437.Nishas-MacBook-Pro.local.2282.0
++2022-11-08 21:23:59 INFO No path found after runs/PPO_2/events.out.tfevents.1667971437.Nishas-MacBook-Pro.local.2282.0
++2022-11-08 21:23:59 INFO No path found after runs/PPO_2/events.out.tfevents.1667971437.Nishas-MacBook-Pro.local.2282.0
++2022-11-08 21:24:00 INFO No path found after runs/PPO_2/events.out.tfevents.1667971437.Nishas-MacBook-Pro.local.2282.0
++2022-11-08 21:24:01 INFO No path found after runs/PPO_2/events.out.tfevents.1667971437.Nishas-MacBook-Pro.local.2282.0
++2022-11-08 21:24:02 INFO No path found after runs/PPO_2/events.out.tfevents.1667971437.Nishas-MacBook-Pro.local.2282.0
++2022-11-08 21:24:03 INFO No path found after runs/PPO_2/events.out.tfevents.1667971437.Nishas-MacBook-Pro.local.2282.0
++2022-11-08 21:24:04 INFO No path found after runs/PPO_2/events.out.tfevents.1667971437.Nishas-MacBook-Pro.local.2282.0
++2022-11-08 21:24:05 INFO No path found after runs/PPO_2/events.out.tfevents.1667971437.Nishas-MacBook-Pro.local.2282.0
++2022-11-08 21:25:14 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:15 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:16 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:17 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:18 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:19 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:20 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:21 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:22 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:23 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:24 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:25 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:26 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:27 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:28 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:29 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:30 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:31 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:32 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:33 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:34 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:35 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:36 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:37 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:38 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:39 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:40 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:41 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:42 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:43 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:44 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:45 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:46 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:47 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:48 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:49 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:50 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:51 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:52 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:53 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:54 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:55 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:56 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:57 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:58 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:25:59 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:00 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:01 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:02 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:03 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:04 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:05 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:06 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:07 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:08 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:09 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:10 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:11 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:12 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:13 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:14 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:15 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:16 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:17 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:18 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:19 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:20 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:21 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:22 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:23 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:24 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:25 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:26 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:27 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:28 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:29 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:30 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:31 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:32 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:33 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:34 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:35 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:36 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:37 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:38 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:39 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:40 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:41 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:42 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:43 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:44 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:45 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:46 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:47 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:47 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:47 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:48 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:49 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:50 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:51 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
++2022-11-08 21:26:52 INFO No path found after runs/PPO_3/events.out.tfevents.1667971513.Nishas-MacBook-Pro.local.2525.0
+diff --git a/wandb/debug-internal.log b/wandb/debug-internal.log
+index 90ff074..445b2e1 120000
+--- a/wandb/debug-internal.log
++++ b/wandb/debug-internal.log
+@@ -1 +1 @@
+-run-20221108_172835-w52z9vut/logs/debug-internal.log
+\ No newline at end of file
++run-20221108_213227-2dqt6sbi/logs/debug-internal.log
+\ No newline at end of file
+diff --git a/wandb/debug.log b/wandb/debug.log
+index 480e812..b7f13fd 120000
+--- a/wandb/debug.log
++++ b/wandb/debug.log
+@@ -1 +1 @@
+-run-20221108_172835-w52z9vut/logs/debug.log
+\ No newline at end of file
++run-20221108_213227-2dqt6sbi/logs/debug.log
+\ No newline at end of file
+diff --git a/wandb/latest-run b/wandb/latest-run
+index 77387c2..6895eef 120000
+--- a/wandb/latest-run
++++ b/wandb/latest-run
+@@ -1 +1 @@
+-run-20221108_172835-w52z9vut
+\ No newline at end of file
++run-20221108_213227-2dqt6sbi
+\ No newline at end of file

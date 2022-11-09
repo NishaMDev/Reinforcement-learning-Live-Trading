@@ -1,0 +1,198 @@
+/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/gym/spaces/box.py:73: UserWarning: [33mWARN: Box bound precision lowered by casting to float16
+  logger.warn(
+/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/env/StockTradingEnv.py:97: RuntimeWarning: invalid value encountered in double_scalars
+  self.cost_basis = (
+/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/stable_baselines3/common/evaluation.py:65: UserWarning: Evaluation environment is not wrapped with a ``Monitor`` wrapper. This may result in reporting modified episode lengths and rewards, if other wrappers happen to modify these. Consider wrapping environment first with ``Monitor`` wrapper.
+  warnings.warn(
+Using cpu device
+Logging to runs/PPO_3
+/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/env/StockTradingEnv.py:97: RuntimeWarning: invalid value encountered in double_scalars
+  self.cost_basis = (
+/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/stable_baselines3/common/evaluation.py:65: UserWarning: Evaluation environment is not wrapped with a ``Monitor`` wrapper. This may result in reporting modified episode lengths and rewards, if other wrappers happen to modify these. Consider wrapping environment first with ``Monitor`` wrapper.
+  warnings.warn(
+Eval num_timesteps=1000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 1000     |
+---------------------------------
+New best mean reward!
+Eval num_timesteps=2000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 2000     |
+---------------------------------
+-----------------------------
+| time/              |      |
+|    fps             | 124  |
+|    iterations      | 1    |
+|    time_elapsed    | 16   |
+|    total_timesteps | 2048 |
+-----------------------------
+Eval num_timesteps=3000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+-----------------------------------------
+| eval/                   |             |
+|    mean_ep_length       | 5.35e+03    |
+|    mean_reward          | 2.15e+07    |
+| time/                   |             |
+|    total_timesteps      | 3000        |
+| train/                  |             |
+|    approx_kl            | 3.05243e-05 |
+|    clip_fraction        | 0           |
+|    clip_range           | 0.2         |
+|    entropy_loss         | -2.84       |
+|    explained_variance   | 4.17e-07    |
+|    learning_rate        | 0.0003      |
+|    loss                 | 5.03e+07    |
+|    n_updates            | 10          |
+|    policy_gradient_loss | -0.000244   |
+|    std                  | 1           |
+|    value_loss           | 9.56e+07    |
+-----------------------------------------
+Eval num_timesteps=4000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 4000     |
+---------------------------------
+-----------------------------
+| time/              |      |
+|    fps             | 122  |
+|    iterations      | 2    |
+|    time_elapsed    | 33   |
+|    total_timesteps | 4096 |
+-----------------------------
+Eval num_timesteps=5000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+------------------------------------------
+| eval/                   |              |
+|    mean_ep_length       | 5.35e+03     |
+|    mean_reward          | 2.15e+07     |
+| time/                   |              |
+|    total_timesteps      | 5000         |
+| train/                  |              |
+|    approx_kl            | 4.373025e-06 |
+|    clip_fraction        | 0            |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -2.84        |
+|    explained_variance   | -8.7e-06     |
+|    learning_rate        | 0.0003       |
+|    loss                 | 4.46e+07     |
+|    n_updates            | 20           |
+|    policy_gradient_loss | -4.68e-05    |
+|    std                  | 1            |
+|    value_loss           | 9.73e+07     |
+------------------------------------------
+Eval num_timesteps=6000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 6000     |
+---------------------------------
+-----------------------------
+| time/              |      |
+|    fps             | 121  |
+|    iterations      | 3    |
+|    time_elapsed    | 50   |
+|    total_timesteps | 6144 |
+-----------------------------
+Eval num_timesteps=7000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+-------------------------------------------
+| eval/                   |               |
+|    mean_ep_length       | 5.35e+03      |
+|    mean_reward          | 2.15e+07      |
+| time/                   |               |
+|    total_timesteps      | 7000          |
+| train/                  |               |
+|    approx_kl            | 2.4707697e-06 |
+|    clip_fraction        | 0             |
+|    clip_range           | 0.2           |
+|    entropy_loss         | -2.84         |
+|    explained_variance   | -3.58e-06     |
+|    learning_rate        | 0.0003        |
+|    loss                 | 4.85e+07      |
+|    n_updates            | 30            |
+|    policy_gradient_loss | -2.19e-05     |
+|    std                  | 1             |
+|    value_loss           | 9.62e+07      |
+-------------------------------------------
+Eval num_timesteps=8000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+---------------------------------
+| eval/              |          |
+|    mean_ep_length  | 5.35e+03 |
+|    mean_reward     | 2.15e+07 |
+| time/              |          |
+|    total_timesteps | 8000     |
+---------------------------------
+-----------------------------
+| time/              |      |
+|    fps             | 121  |
+|    iterations      | 4    |
+|    time_elapsed    | 67   |
+|    total_timesteps | 8192 |
+-----------------------------
+/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/render/StockTradingGraph.py:180: UserWarning: FixedFormatter should only be used together with FixedLocator
+  self.price_ax.set_xticklabels(self.df['Date'].values[step_range], rotation=45,
+Eval num_timesteps=9000, episode_reward=21503002.50 +/- 0.00
+Episode length: 5354.00 +/- 0.00
+------------------------------------------
+| eval/                   |              |
+|    mean_ep_length       | 5.35e+03     |
+|    mean_reward          | 2.15e+07     |
+| time/                   |              |
+|    total_timesteps      | 9000         |
+| train/                  |              |
+|    approx_kl            | 6.778224e-06 |
+|    clip_fraction        | 0            |
+|    clip_range           | 0.2          |
+|    entropy_loss         | -2.84        |
+|    explained_variance   | -1.79e-06    |
+|    learning_rate        | 0.0003       |
+|    loss                 | 5.03e+07     |
+|    n_updates            | 40           |
+|    policy_gradient_loss | -7.75e-05    |
+|    std                  | 1            |
+|    value_loss           | 9.64e+07     |
+------------------------------------------
+Stopping training because there was no new best model in the last 4 evaluations
+Traceback (most recent call last):
+  File "/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/main.py", line 100, in <module>
+    env.render(mode='live')
+  File "/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/stable_baselines3/common/vec_env/dummy_vec_env.py", line 87, in render
+    return self.envs[0].render(mode=mode)
+  File "/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/env/StockTradingEnv.py", line 185, in render
+    self.visualization.render(
+  File "/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/render/StockTradingGraph.py", line 176, in render
+    self._render_volume(current_step, net_worth, dates, step_range)
+  File "/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/render/StockTradingGraph.py", line 131, in _render_volume
+    self.volume_ax.bar(dates[pos], volume[pos], color=UP_COLOR,
+  File "/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/matplotlib/__init__.py", line 1423, in inner
+    return func(ax, *map(sanitize_sequence, args), **kwargs)
+  File "/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/matplotlib/axes/_axes.py", line 2468, in bar
+    self.add_patch(r)
+  File "/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/matplotlib/axes/_base.py", line 2415, in add_patch
+    self._update_patch_limits(p)
+  File "/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/matplotlib/axes/_base.py", line 2444, in _update_patch_limits
+    vertices = np.row_stack(vertices)
+  File "<__array_function__ internals>", line 179, in vstack
+  File "/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/numpy/core/shape_base.py", line 219, in _vhstack_dispatcher
+    return _arrays_for_stack_dispatcher(tup)
+  File "/Users/nishadevadiga/miniforge3/envs/venv/lib/python3.10/site-packages/numpy/core/shape_base.py", line 208, in _arrays_for_stack_dispatcher
+    if not hasattr(arrays, '__getitem__') and hasattr(arrays, '__iter__'):
+KeyboardInterrupt

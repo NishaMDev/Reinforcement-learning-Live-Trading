@@ -1,14 +1,11 @@
+"""
+name - StockTradingGraph.py
+"""
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-from datetime import datetime 
 from matplotlib import style
-
-
-# finance module is no longer part of matplotlib
-# see: https://github.com/matplotlib/mpl_finance
-# from mpl_finance import candlestick_ochl as candlestick
 
 from mplfinance.original_flavor import candlestick_ohlc as candlestick
 
@@ -34,9 +31,9 @@ def date2num(date):
 class StockTradingGraph:
     """A stock trading visualization using matplotlib made to render OpenAI gym environments"""
 
-    def __init__(self, df, title=None):
-        self.df = df
-        self.net_worths = np.zeros(len(df['Date']))
+    def __init__(self, stock_data, title=None):
+        self.stock_data = stock_data
+        self.net_worths = np.zeros(len(stock_data['Date']))
 
         # Create a figure on screen and set the title
         fig = plt.figure()
@@ -73,7 +70,7 @@ class StockTradingGraph:
         legend = self.net_worth_ax.legend(loc=2, ncol=2, prop={'size': 8})
         legend.get_frame().set_alpha(0.4)
 
-        last_date = date2num(self.df['Date'].values[current_step])
+        last_date = date2num(self.stock_data['Date'].values[current_step])
         last_net_worth = self.net_worths[current_step]
 
         # Annotate the current net worth on the net worth graph
@@ -93,16 +90,18 @@ class StockTradingGraph:
 
         # Format data for OHCL candlestick graph
         candlesticks = zip(dates,
-                           self.df['Open'].values[step_range], self.df['Close'].values[step_range],
-                           self.df['High'].values[step_range], self.df['Low'].values[step_range])
+                           self.stock_data['Open'].values[step_range],
+                           self.stock_data['Close'].values[step_range],
+                           self.stock_data['High'].values[step_range],
+                           self.stock_data['Low'].values[step_range])
 
         # Plot price using candlestick graph from mpl_finance
         candlestick(self.price_ax, candlesticks, width=1,
                     colorup=UP_COLOR, colordown=DOWN_COLOR)
 
-        last_date = date2num(self.df['Date'].values[current_step])
-        last_close = self.df['Close'].values[current_step]
-        last_high = self.df['High'].values[current_step]
+        last_date = date2num(self.stock_data['Date'].values[current_step])
+        last_close = self.stock_data['Close'].values[current_step]
+        last_high = self.stock_data['High'].values[current_step]
 
         # Print the current price to the price axis
         self.price_ax.annotate('{0:.2f}'.format(last_close), (last_date, last_close),
@@ -120,12 +119,12 @@ class StockTradingGraph:
     def _render_volume(self, current_step, net_worth, dates, step_range):
         self.volume_ax.clear()
 
-        volume = np.array(self.df['Volume'].values[step_range])
+        volume = np.array(self.stock_data['Volume'].values[step_range])
 
-        pos = self.df['Open'].values[step_range] - \
-            self.df['Close'].values[step_range] < 0
-        neg = self.df['Open'].values[step_range] - \
-            self.df['Close'].values[step_range] > 0
+        pos = self.stock_data['Open'].values[step_range] - \
+            self.stock_data['Close'].values[step_range] < 0
+        neg = self.stock_data['Open'].values[step_range] - \
+            self.stock_data['Close'].values[step_range] > 0
 
         # Color volume bars based on price direction on that date
         self.volume_ax.bar(dates[pos], volume[pos], color=UP_COLOR,
@@ -140,9 +139,9 @@ class StockTradingGraph:
     def _render_trades(self, current_step, trades, step_range):
         for trade in trades:
             if trade['step'] in step_range:
-                date = date2num(self.df['Date'].values[trade['step']])
-                high = self.df['High'].values[trade['step']]
-                low = self.df['Low'].values[trade['step']]
+                date = date2num(self.stock_data['Date'].values[trade['step']])
+                high = self.stock_data['High'].values[trade['step']]
+                low = self.stock_data['Low'].values[trade['step']]
 
                 if trade['type'] == 'buy':
                     high_low = low
@@ -165,11 +164,9 @@ class StockTradingGraph:
 
         window_start = max(current_step - window_size, 0)
         step_range = range(window_start, current_step + 1)
-        
         # Format dates as timestamps, necessary for candlestick graph
         dates = np.array([date2num(x)
-                          for x in self.df['Date'].values[step_range]])
- 
+                          for x in self.stock_data['Date'].values[step_range]])
 
         self._render_net_worth(current_step, net_worth, step_range, dates)
         self._render_price(current_step, net_worth, dates, step_range)
@@ -177,7 +174,7 @@ class StockTradingGraph:
         self._render_trades(current_step, trades, step_range)
 
         # Format the date ticks to be more easily read
-        self.price_ax.set_xticklabels(self.df['Date'].values[step_range], rotation=45,
+        self.price_ax.set_xticklabels(self.stock_data['Date'].values[step_range], rotation=45,
                                       horizontalalignment='right')
 
         # Hide duplicate net worth date labels
