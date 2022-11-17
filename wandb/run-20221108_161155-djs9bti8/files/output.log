@@ -1,6 +1,0 @@
-
-Using cpu device
-Traceback (most recent call last):
-  File "/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/main.py", line 57, in <module>
-    checkpoint_callback = CheckpointCallback(save_freq=1e4, save_path='./model_checkpoints/{algo}/'.format(algo))
-KeyError: 'algo'

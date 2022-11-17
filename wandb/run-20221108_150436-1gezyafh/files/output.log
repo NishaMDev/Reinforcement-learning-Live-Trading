@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/main.py", line 50, in <module>
-    model = algo("MlpPolicy", env, verbose=1)
-TypeError: 'str' object is not callable

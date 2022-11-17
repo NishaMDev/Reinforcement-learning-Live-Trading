@@ -1,6 +1,0 @@
-
-Using cpu device
-Traceback (most recent call last):
-  File "/Users/nishadevadiga/Downloads/Stock-Trading-Environment-master/main.py", line 62, in <module>
-    eval_callback = EvalCallback(env, best_model_save_path="./model_checkpoints/best_model/{algo}/".format(algo),
-KeyError: 'algo'
