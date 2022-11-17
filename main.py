@@ -9,20 +9,18 @@ import sys
 # from stable_baselines3.common.policies import MlpPolicy
 from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3 import PPO, A2C, DDPG , SAC
-# from stable_baselines3.common.env_util import make_vec_env
-from stable_baselines3.common.env_checker import check_env
+
 from stable_baselines3.common.callbacks import CallbackList, CheckpointCallback
-from stable_baselines3 import SAC
-# from stable_baselines3.common.callbacks import EvalCallback, StopTrainingOnNoModelImprovement
-from stable_baselines3.common.callbacks import EvalCallback , StopTrainingOnNoModelImprovement
+from stable_baselines3.common.callbacks import EvalCallback 
+from stable_baselines3.common.monitor   import Monitor
+from stable_baselines3.common.evaluation import evaluate_policy
+
 import pandas as pd
 import wandb
 from wandb.integration.sb3 import WandbCallback
 from env.stock_trading_env import StockTradingEnv
 
-
 TOTAL_TIMESTEPS = 200000
-
 
 if __name__ == '__main__':
     # Initialize parser
@@ -38,7 +36,8 @@ if __name__ == '__main__':
          "momentum" : 0.2,
          "env_name": "StockTradingEnv",
         }
-    ''' Initialize wandb '''
+    
+    # Initialize wandb
     run = wandb.init(
           project="StockTrading",
           config=config,
@@ -46,16 +45,15 @@ if __name__ == '__main__':
           monitor_gym=True,  # auto-upload the videos of agents playing the game
           save_code=True,  # optional
         )
-    # artifact = wandb.Artifact(name='Stocks', type='dataset')
-    # artifact.add_file(local_path='path/file.format')
+
     # Load data
-    df = pd.read_csv('./data/MSFT.csv')
+    df = pd.read_csv('./data/AAPL.csv')
     df = df.sort_values('Date')
 
     # The algorithms require a vectorized environment to run
-    env = DummyVecEnv([lambda: StockTradingEnv(df)])
-
-    # Instantiate the agent
+    env = DummyVecEnv([lambda: Monitor(StockTradingEnv(df)), n_envs=10])
+    
+    # Instantiate the agent model
     if algo == "PPO":
         model = PPO("MlpPolicy", env, tensorboard_log=f"runs", verbose=1)
     elif algo == "A2C":
@@ -67,37 +65,31 @@ if __name__ == '__main__':
     else:
         print("Program Terminated. Please enter valid algorithm - PPO / A2C / DDPG / SAC")
         sys.exit()
+
     checkpoint_callback = CheckpointCallback(save_freq=1e4, save_path='./model_checkpoints/')
-    # Stop training if there is no improvement after more than 3 evaluations
-    stop_train_callback = StopTrainingOnNoModelImprovement(max_no_improvement_evals=3,
-                                                           min_evals=5,verbose=1)
     eval_callback = EvalCallback(env,
-                                 best_model_save_path=f"./model_checkpoints/best_model/{algo}/",
+                                 best_model_save_path=f"./model_checkpoints/best_model/",
                                  log_path="./logs/results",
-                                 callback_after_eval=stop_train_callback,
                                  eval_freq=1000,verbose=1)
     wandb_callback = WandbCallback(
-            model_save_path=f"models/{algo}/{run.id}",
+        model_save_path=f"models/{run.id}",
                     # gradient_save_freq=1000
-            verbose=1,
+        verbose=1,
         )
-
     # Create the callback list
     callback = CallbackList([checkpoint_callback, eval_callback,wandb_callback])
-
+    
     # Train the agent
     model.learn(total_timesteps=TOTAL_TIMESTEPS,callback=callback)
-
-# model.save("ppo_stock_trading")
-# del model # remove to demonstrate saving and loading
-# model = PPO.load("ppo_stock_trading",print_system_info=True))
-
+    
+    mean_reward, std_reward = evaluate_policy(model, env, n_eval_episodes=1)
+    print(f"mean_reward:{mean_reward:.2f} +/- {std_reward:.2f}")
+    
     obs = env.reset()
-    # for i in range(len(df['Date'])):
-    for i in range(2000):
+
+    for i in range(200):
         action, _states = model.predict(obs)
         obs, rewards, done, info = env.step(action)
-        # env.render(title='MSFT')
         env.render(mode='file')
+    env.render(mode='static')
     run.finish()
-    
