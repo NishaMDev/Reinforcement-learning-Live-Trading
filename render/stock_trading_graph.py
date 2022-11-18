@@ -6,10 +6,12 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib import style
+# from tkinter import *
 
 from mplfinance.original_flavor import candlestick_ohlc as candlestick
+import mplfinance as mpl
 
-style.use('dark_background')
+plt.style.use('fivethirtyeight')
 
 VOLUME_CHART_HEIGHT = 0.33
 
@@ -65,12 +67,12 @@ class StockTradingGraph:
         self.net_worth_ax.plot_date(
             dates, self.net_worths[step_range], '-', label='Net Worth')
 
-        # Show legend, which uses the label we defined for the plot above
+       # Show legend, which uses the label we defined for the plot above
         self.net_worth_ax.legend()
         legend = self.net_worth_ax.legend(loc=2, ncol=2, prop={'size': 8})
         legend.get_frame().set_alpha(0.4)
 
-        last_date = date2num(self.stock_data['Date'].values[current_step])
+        last_date = date2num( self.stock_data['Date'].values[current_step])
         last_net_worth = self.net_worths[current_step]
 
         # Annotate the current net worth on the net worth graph
@@ -164,9 +166,14 @@ class StockTradingGraph:
 
         window_start = max(current_step - window_size, 0)
         step_range = range(window_start, current_step + 1)
+        # print("current_step: ", current_step)
+        # print("window_start: ", window_start)
+        # print("step_range: ",step_range)
         # Format dates as timestamps, necessary for candlestick graph
         dates = np.array([date2num(x)
                           for x in self.stock_data['Date'].values[step_range]])
+        
+        # print("dates: ",dates)
 
         self._render_net_worth(current_step, net_worth, step_range, dates)
         self._render_price(current_step, net_worth, dates, step_range)
@@ -182,6 +189,7 @@ class StockTradingGraph:
 
         # Necessary to view frames before they are unrendered
         plt.pause(0.001)
+
 
     def close(self):
         plt.close()
