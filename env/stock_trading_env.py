@@ -11,10 +11,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 # from enum import Enum
 
+plt.style.use('fivethirtyeight')
+
 from render.stock_trading_graph import StockTradingGraph
 
-MAX_ACCOUNT_BALANCE = 2147483647
-MAX_NUM_SHARES = 2147483647
+MAX_ACCOUNT_BALANCE = 1000000
+MAX_NUM_SHARES = 200000
 MAX_SHARE_PRICE = 5000
 MAX_OPEN_POSITIONS = 5
 MAX_STEPS = 2000
@@ -46,10 +48,11 @@ class StockTradingEnv(gym.Env):
         # Actions of the format Buy x%, Sell x%, Hold, etc.
         self.action_space = spaces.Box(
             low=np.array([0, 0]), high=np.array([3, 1]), dtype=np.float16)
-
+        
         # Prices contains the OHCL values for the last five prices
         self.observation_space = spaces.Box(
             low=0, high=1, shape=(5, LOOKBACK_WINDOW_SIZE + 2), dtype=np.float16)
+            # low=0, high=1, shape=(1O, LOOKBACK_WINDOW_SIZE + 1), dtype=np.float16)
 
     
     def _next_observation(self):
@@ -103,13 +106,9 @@ class StockTradingEnv(gym.Env):
 
 
             if shares_bought > 0:
-                self.trades.append({'Step_nbr': self.current_step,
+                self.trades.append({'step': self.current_step,
                                     'shares': shares_bought, 'total': additional_cost,
-                                    'type': "buy"})
-            else:
-                self.trades.append({'Step_nbr': self.current_step,
-                                    'shares': 0, 'total': 0,
-                                    'type': "no-trade"})    
+                                    'type': "buy"}) 
 
         elif action_type < 2:
             # Sell amount % of shares held
@@ -121,14 +120,9 @@ class StockTradingEnv(gym.Env):
             self.total_sales_value += shares_sold * current_price
 
             if shares_sold > 0:
-                self.trades.append({'Step_nbr': self.current_step,
+                self.trades.append({'step': self.current_step,
                                     'shares': shares_sold, 'total': shares_sold * current_price,
                                     'type': "sell"})
-            else:
-                    self.trades.append({'Step_nbr': self.current_step,
-                                    'shares': 0, 'total': 0,
-                                    'type': "no-trade"})
-                    
 
         self.net_worth = self.balance + self.shares_held * current_price
         if self.net_worth > self.max_net_worth:
@@ -136,7 +130,6 @@ class StockTradingEnv(gym.Env):
 
         if self.shares_held == 0:
             self.cost_basis = 0
-            
             
 
     def step(self, action):
@@ -171,7 +164,6 @@ class StockTradingEnv(gym.Env):
         self.current_step = 0
         self.trades = []
         self.trades_new = []
-
         return self._next_observation()
 
     def _render_to_file(self, filename='render.txt'):
@@ -239,6 +231,7 @@ class StockTradingEnv(gym.Env):
         axes[1][1].legend(loc="best", shadow=True, fancybox=True, framealpha =0.5)
         
         plt.legend()
+        plt.savefig('result.png')
         plt.show()
 
     
