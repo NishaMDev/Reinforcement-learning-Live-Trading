@@ -34,9 +34,12 @@ Steps to run -
 
 you can provide any algo [-a]: PPO / A2C / SAC & [-t]: timesteps
 
+# Colab Link 
+
+https://colab.research.google.com/drive/1OdU08AEvQBDxIRr2YsxV1j1CPWrCBbR2?usp=sharing
 
 
 References:-
 
-If you'd like to learn about creating custom OpenAI gym environments, check out the Medium article: https://medium.com/@adamjking3/creating-a-custom-openai-gym-environment-for-stock-trading-be532be3910e
+Medium article: https://medium.com/@adamjking3/creating-a-custom-openai-gym-environment-for-stock-trading-be532be3910e
 
